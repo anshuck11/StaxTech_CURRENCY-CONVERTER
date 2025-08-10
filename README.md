@@ -15,7 +15,7 @@ A simple and efficient Currency Converter web application that allows users to c
 
 HTML – Structure
 
-CSS3 – Styling and responsive layout
+CSS – Styling and responsive layout
 
 JavaScript – Functionality and API integration
 
