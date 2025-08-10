@@ -1,0 +1,475 @@
+:root {
+    --primary: #7c3aed;         /* Soft purple */
+    --primary-dark: #5b21b6;    /* Deep purple */
+    --primary-light: #c4b5fd;   /* Light lavender */
+    --secondary: #38bdf8;       /* Sky blue */
+    --background: #f8fafc;      /* Very light gray */
+    --surface: #fff;            /* White */
+    --surface-light: #f1f5f9;   /* Light gray */
+    --text-primary: #1e293b;    /* Dark blue-gray */
+    --text-secondary: #64748b;  /* Muted blue-gray */
+    --border: #e2e8f0;          /* Pale gray */
+    --error: #ef4444;           /* Red */
+    --success: #22c55e;         /* Green */
+    --radius: 16px;
+    --radius-sm: 8px;
+    --radius-lg: 24px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--background);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Background Effect */
+body::before {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
+    animation: rotate 30s linear infinite;
+    z-index: -1;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.container {
+    width: 100%;
+    max-width: 1000px;
+    animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--primary);
+}
+
+.logo i {
+    font-size: 36px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.header-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+/* Converter Box */
+.converter-box {
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    padding: 40px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+}
+
+.converter-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+}
+
+/* Amount Input */
+.amount-container {
+    margin-bottom: 32px;
+}
+
+.amount-container label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.amount-input-group {
+    position: relative;
+}
+
+#amount {
+    width: 100%;
+    padding: 20px 24px;
+    font-size: 36px;
+    font-weight: 700;
+    background: var(--background);
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text-primary);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+#amount:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: var(--surface);
+}
+
+.amount-bg-effect {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+    opacity: 0;
+    filter: blur(40px);
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+#amount:focus ~ .amount-bg-effect {
+    opacity: 0.1;
+}
+
+/* Exchange Container */
+.exchange-container {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.currency-wrapper {
+    position: relative;
+}
+
+.currency-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+}
+
+.currency-selector {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: var(--background);
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    transition: all 0.3s ease;
+}
+
+.currency-selector:hover {
+    border-color: var(--primary);
+}
+
+.flag {
+    width: 32px;
+    height: 24px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-right: 12px;
+}
+
+.currency-dropdown {
+    flex: 1;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    appearance: none;
+    padding-right: 24px;
+}
+
+.currency-dropdown:focus {
+    outline: none;
+}
+
+.dropdown-arrow {
+    position: absolute;
+    right: 16px;
+    color: var(--text-secondary);
+    transition: transform 0.3s ease;
+}
+
+.currency-selector:hover .dropdown-arrow {
+    transform: translateY(2px);
+}
+
+/* Swap Button */
+.swap-button {
+    width: 48px;
+    height: 48px;
+    background: var(--primary);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.swap-button:hover {
+    background: var(--primary-dark);
+    transform: rotate(180deg);
+}
+
+/* Convert Button */
+.convert-button {
+    width: 100%;
+    padding: 20px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    border: none;
+    border-radius: var(--radius);
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 32px;
+}
+
+.convert-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+}
+
+.convert-button:active {
+    transform: translateY(0);
+}
+
+/* Result Container */
+.result-container {
+    background: var(--background);
+    border-radius: var(--radius);
+    padding: 24px;
+    text-align: center;
+    border: 1px solid var(--border);
+    display: none;
+}
+
+.result-container.show {
+    display: block;
+    animation: slideUp 0.4s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.result-amount {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+
+.result-amount i {
+    color: var(--text-secondary);
+    font-size: 20px;
+}
+
+#to-amount {
+    color: var(--success);
+}
+
+.exchange-rate {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+/* Quick Amounts */
+.quick-amounts {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+    justify-content: center;
+}
+
+.quick-btn {
+    padding: 12px 24px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.quick-btn:hover {
+    background: var(--primary);
+    border-color: var(--primary);
+    transform: translateY(-2px);
+}
+
+/* Popular Currencies */
+.popular-currencies {
+    margin-top: 40px;
+}
+
+.popular-currencies h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: var(--text-secondary);
+}
+
+.currency-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 12px;
+}
+
+.currency-tile {
+    padding: 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.currency-tile:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.currency-name {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-top: 8px;
+}
+
+.currency-value {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+/* Footer */
+.footer {
+    margin-top: 40px;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.footer a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    color: var(--primary-light);
+}
+
+@media (max-width: 768px) {
+    .exchange-container {
+        grid-template-columns: 1fr;
+    }
+
+    .currency-selector {
+        width: 100%;
+    }
+
+    .swap-button {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+
+    .convert-button {
+        padding: 18px;
+        font-size: 16px;
+    }
+
+    .result-amount {
+        font-size: 20px;
+    }
+
+    .quick-btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    .currency-tile {
+        padding: 14px;
+    }
+}
