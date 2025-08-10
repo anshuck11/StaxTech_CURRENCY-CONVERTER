@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Currency Converter</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">
+                <i class="fas fa-coins"></i>
+                <span>CurrencyPro</span>
+            </div>
+            <div class="header-info">
+                <i class="fas fa-clock"></i>
+                <span id="last-update">Real-time rates</span>
+            </div>
+        </div>
+
+        <!-- Main Converter -->
+        <div class="converter-box">
+            <!-- Amount Input -->
+            <div class="amount-container">
+                <label for="amount">Amount</label>
+                <div class="amount-input-group">
+                    <input type="number" id="amount" value="1000" placeholder="0.00">
+                    <div class="amount-bg-effect"></div>
+                </div>
+            </div>
+
+            <!-- Currency Exchange Section -->
+            <div class="exchange-container">
+                <!-- From Currency -->
+                <div class="currency-wrapper from">
+                    <div class="currency-label">From</div>
+                    <div class="currency-selector">
+                        <img src="https://flagcdn.com/w40/us.png" alt="USD" class="flag" id="from-flag">
+                        <select id="from-currency" class="currency-dropdown">
+                            <option value="">Loading...</option>
+                        </select>
+                        <i class="fas fa-chevron-down dropdown-arrow"></i>
+                    </div>
+                </div>
+
+                <!-- Swap Button -->
+                <button id="swap-btn" class="swap-button">
+                    <i class="fas fa-arrows-alt-h"></i>
+                </button>
+
+                <!-- To Currency -->
+                <div class="currency-wrapper to">
+                    <div class="currency-label">To</div>
+                    <div class="currency-selector">
+                        <img src="https://flagcdn.com/w40/eu.png" alt="EUR" class="flag" id="to-flag">
+                        <select id="to-currency" class="currency-dropdown">
+                            <option value="">Loading...</option>
+                        </select>
+                        <i class="fas fa-chevron-down dropdown-arrow"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Convert Button -->
+            <button id="convert-btn" class="convert-button">
+                <span>Convert</span>
+                <i class="fas fa-arrow-right"></i>
+            </button>
+
+            <!-- Result Display -->
+            <div id="result-container" class="result-container">
+                <div class="result-amount">
+                    <span id="from-amount">1,000 USD</span>
+                    <i class="fas fa-equals"></i>
+                    <span id="to-amount">920.50 EUR</span>
+                </div>
+                <div class="exchange-rate" id="exchange-rate">
+                    1 USD = 0.9205 EUR
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Amount Buttons -->
+        <div class="quick-amounts">
+            <button class="quick-btn" data-amount="100">100</button>
+            <button class="quick-btn" data-amount="500">500</button>
+            <button class="quick-btn" data-amount="1000">1K</button>
+            <button class="quick-btn" data-amount="5000">5K</button>
+            <button class="quick-btn" data-amount="10000">10K</button>
+        </div>
+
+        <!-- Popular Currencies -->
+        <div class="popular-currencies">
+            <h3>Popular Currencies</h3>
+            <div class="currency-grid">
+                <div class="currency-tile" data-currency="USD">🇺🇸 USD</div>
+                <div class="currency-tile" data-currency="EUR">🇪🇺 EUR</div>
+                <div class="currency-tile" data-currency="GBP">🇬🇧 GBP</div>
+                <div class="currency-tile" data-currency="AUD">🇦🇺 AUD</div>
+                <div class="currency-tile" data-currency="CAD">🇨🇦 CAD</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
